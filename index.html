@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="index.css" type="text/css" rel="stylesheet">
+        <title>
+            Guess
+        </title>
+    </header>
+    <body>
+        
+        <div>
+            <script src="phaser.js" ></script>
+            <!-- <script src="js.js" ></script> -->
+             
+            <script>
+              const gameState = {
+                t:0
+              };
+
+
+  
+
+function preload() {
+
+  // Load in the sprite sheet below:
+  this.load.spritesheet('codey','https://cors-anywhere.herokuapp.com/https://sosproject2014djj.files.wordpress.com/2014/06/pygmy_sprite_preview.png',{ frameWidth:1005, frameHeight: 1180 })
+  this.load.image('index','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.spritesheet('king',"https://cors-anywhere.herokuapp.com/https://orig00.deviantart.net/3514/f/2016/325/8/e/crying_lucas_sprites_by_macandbloo101-dap7cow.png",{frameWidth:125,frameHeight:179})
+  this.load.image('index1','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index2','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index3','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index4','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index5','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index6','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index7','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index8','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  this.load.image('index9','https://cors-anywhere.herokuapp.com/https://www.pinclipart.com/picdir/big/173-1730009_vector-hand-drawn-wooden-board-pointing-to-logo.png')
+  
+}
+
+
+function create() {
+  
+  gameState.active = true;
+
+  // Creates the background image
+  // Creates platforms group
+  gameState.player=this.physics.add.sprite(1650,800,'codey').setScale(.22);
+  
+  gameState.king=this.physics.add.sprite(100,1000,'king').setScale(.45)
+  // gameState.index=this.physics.add.sprite(220,1000,'index').setScale(.05);
+  gameState.index1=this.physics.add.sprite(210,1000,'index1').setScale(.05);
+  gameState.index2=this.physics.add.sprite(325,1000,'index2').setScale(.05);
+  gameState.index3=this.physics.add.sprite(450,1000,'index3').setScale(.05);
+  gameState.index4=this.physics.add.sprite(575,1000,'index4').setScale(.05);
+  gameState.index5=this.physics.add.sprite(695,1000,'index5').setScale(.05);
+  gameState.index6=this.physics.add.sprite(820,1000,'index6').setScale(.05);
+  gameState.index7=this.physics.add.sprite(930,1000,'index7').setScale(.05);
+  gameState.index8=this.physics.add.sprite(1050,1000,'index8').setScale(.05);
+  gameState.index9=this.physics.add.sprite(1180,1000,'index9').setScale(.05);
+
+
+  gameState.player.setCollideWorldBounds(true);
+  // gameState.index.setCollideWorldBounds(true);
+  gameState.index1.setCollideWorldBounds(true);
+  gameState.index2.setCollideWorldBounds(true);
+  gameState.index3.setCollideWorldBounds(true);
+  gameState.index4.setCollideWorldBounds(true);
+  gameState.index5.setCollideWorldBounds(true);
+  gameState.index6.setCollideWorldBounds(true);
+  gameState.index7.setCollideWorldBounds(true);
+  gameState.index8.setCollideWorldBounds(true);
+  gameState.index9.setCollideWorldBounds(true);
+
+  gameState.king.setCollideWorldBounds(true);
+
+	gameState.cursors = this.input.keyboard.createCursorKeys();
+
+  this.anims.create(
+    {
+    key: 'run',
+    frames: this.anims.generateFrameNumbers('codey', { start: 0, end: 3 }),
+    frameRate: 5,
+    repeat: -1
+  })
+
+  this.anims.create(
+    {
+    key: 'idle',
+    frames: this.anims.generateFrameNumbers('codey', { start: 0, end: 0 }),
+    frameRate: 0,
+    repeat: 0
+  })
+
+  this.anims.create({
+    key: 'happy',
+    frames: this.anims.generateFrameNumbers('king', { start: 0, end: 2 }),
+    frameRate: 4,
+    repeat: -1
+  })
+  
+  this.physics.add.collider(gameState.index9, gameState.player, function(index9) {
+    index9.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+        
+
+  });
+  
+  this.physics.add.collider(gameState.index8, gameState.player, function(index8) {
+    index8.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+        
+
+  });
+  this.physics.add.collider(gameState.index7, gameState.player, function(index7) {
+    index7.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+  });
+  this.physics.add.collider(gameState.index6, gameState.player, function(index6) {
+    index6.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+  });
+  this.physics.add.collider(gameState.index5, gameState.player, function(index5) {
+    index5.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+  });
+  this.physics.add.collider(gameState.index4, gameState.player, function(index4) {
+    index4.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+  });
+  this.physics.add.collider(gameState.index3, gameState.player, function(index3) {
+    index3.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+  });
+  this.physics.add.collider(gameState.index2, gameState.player, function(index2) {
+    index2.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+  });
+  this.physics.add.collider(gameState.index1, gameState.player, function(index1) {
+    index1.destroy();
+    gameState.player.setVelocityX(0);
+        gameState.player.anims.play('run', true);
+        
+
+  });
+  
+
+  this.physics.add.collider(gameState.king, gameState.player, function() {
+    gameState.king.destroy();
+    
+    gameState.t=1;
+    alert("you kiiled the boy")
+    // gameState.player.setVelocityX(-8);
+    //     gameState.player.anims.play('run', true);
+    
+    
+    
+    
+  });
+  
+  
+// document.getElementById('cal').innerHTML="done";
+
+  
+}
+// function call(){
+//   this.input.on('pointerup',() => {
+    
+//     this.scene.restart()
+// // document.getElementById('cal').innerHTML="done";
+
+//   })	
+// }
+
+
+
+                globalThis; 
+function generate(){
+    globalThis=Math.floor(Math.random()*10000);
+   document.getElementById('but').disabled=true;
+   document.getElementById('num').disabled=false;
+   document.getElementById('text').disabled=false;  
+   document.getElementById('para').innerText=null;
+   document.getElementById('id').innerText=null; 
+   document.getElementById('text').value=null;
+   document.getElementById("num").value='Check';
+   c=9;
+      
+}
+function update(){
+  if(gameState.t==1){
+    this.scene.restart()
+    gameState.t=0;
+
+  }
+  // this.input.on('pointerup',() => {
+    
+    // // document.getElementById('cal').innerHTML="done";
+    
+      // })	
+}
+
+
+
+function check(){
+
+               
+             
+ 
+   var test = document.getElementById("text").value;
+   if(test.length==0){
+      document.getElementById("para").innerHTML="Give an input";
+        }
+   else{
+    if(c>=0){
+      if(c==0){
+       document.getElementById("num").value='Try again';
+    document.getElementById("text").disabled=true;
+    document.getElementById("text").disabled=true;
+       document.getElementById("id").innerHTML="answer is "+globalThis;
+      }
+      if(test==globalThis){
+    document.getElementById("para").innerHTML="correct";
+    document.getElementById("num").disabled=true;
+    document.getElementById("but").disabled=false;
+    document.getElementById("text").disabled=true;
+    gameState.t=1;
+    
+    }
+        else if(test>globalThis){
+             document.getElementById("para").innerHTML="it is less than "+ test;
+             gameState.player.setVelocityX(-250);
+        gameState.player.anims.play('run', true);
+        gameState.king.anims.play('happy', true);
+
+            
+
+                }
+        else{
+         document.getElementById("para").innerHTML="it is higer than "+ test;
+         gameState.player.setVelocityX(-350);
+        gameState.player.anims.play('run', true);
+        gameState.king.anims.play('happy', true);
+
+      
+           }
+         
+           c=c-1;
+   }
+   else{
+    document.getElementById("num").disabled=true;
+    document.getElementById("but").disabled=false;
+
+    
+    
+
+   }
+}
+}
+const config = {
+  type: Phaser.AUTO,
+  width: 1500,
+  height: 260,
+  backgroundColor:"#7FFFD4",
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 1500 },
+      enableBody: true,
+    }
+  },
+  scene: {
+    preload,
+    create,
+    update
+    
+  }
+};
+
+const game = new Phaser.Game(config);
+
+
+            </script>
+            
+
+            <div class="box">
+              <h3 style="color: blue; size: 150px;">Guess a number between 0 & 10000 </h3>
+              <br>
+            <input disabled type="number" id="text"  placeholder="????" required>
+            <br><br><br>
+            <input  class="input" type="button" id="but" onclick="generate();" value="Start">
+            <input type="button" value="Check" class="button" disabled id="num" onclick="check();">
+            <p id="para" class="result" style="font-size: 25px;"></p>
+           
+            <p id="id" class="trail" style="font-size: 25px;"></p>
+            
+          
+            </div>
+           
+         </div>
+      
+    </body>
+</html>

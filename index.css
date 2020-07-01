@@ -1,0 +1,25 @@
+body{
+    background-color: aquamarine;
+    overflow: hidden;
+}
+.box{
+    position: relative;
+    left: 37%;
+    top: 50px;
+    box-sizing: border-box;
+    box-shadow: inset;
+    height: 420px;
+    width: 375px;
+    background-color:rgba(0, 0, 0, 0.3);
+    
+    padding-left: 90px;
+    padding-top: 50px;
+}
+
+
+.button{
+    position: relative;
+    left: 77px;
+    border-radius: 10px;
+    
+}
