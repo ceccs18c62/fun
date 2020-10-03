@@ -33,7 +33,7 @@ const gameState = {};
  function update() {
     if (gameState.active) {
      
-        gameState.player.setVelocityX(-150);
+        gameState.player.setVelocityX(-152);
         // Add your code below:
 			gameState.player.anims.play('run',true)
         
