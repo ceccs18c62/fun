@@ -5,11 +5,11 @@ body{
 .box{
     position: relative;
     left: 37%;
-    top: 50px;
+    top: 52px;
     box-sizing: border-box;
     box-shadow: inset;
     height: 420px;
-    width: 375px;
+    width: 380px;
     background-color:rgba(0, 0, 0, 0.3);
     
     padding-left: 90px;
